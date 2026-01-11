@@ -14,9 +14,9 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-      - http_proxy
-      - https_proxy
-      - no_proxy
+        - http_proxy
+        - https_proxy
+        - no_proxy
     image: fossology
     restart: unless-stopped
     environment:
@@ -39,9 +39,9 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-      - http_proxy
-      - https_proxy
-      - no_proxy
+        - http_proxy
+        - https_proxy
+        - no_proxy
     image: fossology
     restart: unless-stopped
     environment:
@@ -51,15 +51,19 @@ services:
       - FOSSOLOGY_DB_PASSWORD=fossy
       - FOSSOLOGY_SCHEDULER_HOST=scheduler
     command: web
-    ports:
-      - "8081:80"
+    expose:
+      - "80"
     depends_on:
       - db
       - scheduler
     volumes:
       - repository:/srv/fossology/repository/
     healthcheck:
-      test: ["CMD-SHELL", "curl -sSf localhost/repo/api/v1/health | grep -q '{\"status\":\"OK\",' || exit 1"]
+      test:
+        [
+          "CMD-SHELL",
+          'curl -sSf localhost/repo/api/v1/health | grep -q ''{"status":"OK",'' || exit 1',
+        ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -74,7 +78,11 @@ services:
     volumes:
       - database:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready --dbname $$POSTGRES_DB --username $$POSTGRES_USER"]
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready --dbname $$POSTGRES_DB --username $$POSTGRES_USER",
+        ]
       interval: 10s
       timeout: 5s
       retries: 5
