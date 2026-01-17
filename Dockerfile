@@ -113,3 +113,10 @@ COPY --from=builder /usr/local/ /usr/local/
 RUN /usr/local/lib/fossology/fo-postinstall --agent --common --scheduler-only \
      --web-only --no-running-database --python-experimental \
  && rm -rf /var/lib/apt/lists/*
+
+# Configure Apache
+COPY ./docker/apache/fossology.conf /etc/apache2/sites-available/fossology.conf
+RUN a2dissite 000-default.conf \
+ && a2ensite fossology.conf \
+ && chown -R www-data:www-data /usr/local/share/fossology/www/ui/ \
+ && chmod -R 755 /usr/local/share/fossology/www/ui/
