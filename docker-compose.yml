@@ -54,13 +54,6 @@ services:
       - sh
       - -c
       - |
-        # Setup Apache configuration
-        a2dissite 000-default.conf
-        cp /tmp/fossology.conf /etc/apache2/sites-available/fossology.conf
-        a2ensite fossology.conf
-        chown -R www-data:www-data /usr/local/share/fossology/www/ui/
-        chmod -R 755 /usr/local/share/fossology/www/ui/
-        service apache2 reload
         # Start cron and Apache
         /etc/init.d/cron start
         exec /usr/sbin/apache2ctl -e info -D FOREGROUND
@@ -71,7 +64,6 @@ services:
       - scheduler
     volumes:
       - repository:/srv/fossology/repository/
-      - ./docker/apache/fossology.conf:/tmp/fossology.conf:ro
     healthcheck:
       test:
         [
