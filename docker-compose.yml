@@ -55,7 +55,7 @@ services:
       - -c
       - |
         # Setup Apache configuration
-        cp /tmp/setup-apache.sh /tmp/setup.sh && chmod +x /tmp/setup.sh && /tmp/setup.sh
+        cp /tmp/apache-setup.sh /tmp/setup.sh && chmod +x /tmp/setup.sh && /tmp/setup.sh
         # Start cron and Apache
         /etc/init.d/cron start
         exec /usr/sbin/apache2ctl -e info -D FOREGROUND
@@ -67,7 +67,7 @@ services:
     volumes:
       - repository:/srv/fossology/repository/
       - ./docker/apache/fossology.conf:/tmp/fossology.conf:ro
-      - ./docker/apache/setup-apache.sh:/tmp/setup-apache.sh
+      - ./docker/apache/setup-apache.sh:/tmp/apache-setup.sh
     healthcheck:
       test:
         [
