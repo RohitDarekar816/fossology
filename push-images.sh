@@ -1,0 +1,12 @@
+#!/bin/bash
+echo "Please run these commands manually to push the images:"
+echo ""
+echo "# Login to Docker Hub (you'll need to enter your password):"
+echo "docker login -u rohitdarekar816"
+echo ""
+echo "# Push the images:"
+echo "docker push rohitdarekar816/fossology:latest"
+echo "docker push rohitdarekar816/fossology:web"
+echo "docker push rohitdarekar816/fossology:scheduler"
+echo ""
+echo "After pushing, update docker-compose.yml to use the remote images."

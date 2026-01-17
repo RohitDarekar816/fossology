@@ -1,4 +1,4 @@
-# FOSSology Docker Compose file
+# FOSSology Docker Compose file (Production)
 # SPDX-FileCopyrightText: © 2016 Siemens AG
 # SPDX-FileCopyrightText: © fabio.huser@siemens.com
 # SPDX-FileCopyrightText: © 2016-2017 TNG Technology Consulting GmbH
@@ -8,16 +8,10 @@
 #
 # Description: Recipe for setting up a multi container FOSSology
 #              Docker setup with separate Database instance
+#              This version uses pre-built images from Docker Hub
 services:
   scheduler:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - http_proxy
-        - https_proxy
-        - no_proxy
-    image: fossology
+    image: rohitdarekar816/fossology:scheduler
     restart: unless-stopped
     environment:
       - FOSSOLOGY_DB_HOST=db
@@ -35,14 +29,7 @@ services:
       timeout: 5s
       retries: 2
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - http_proxy
-        - https_proxy
-        - no_proxy
-    image: fossology
+    image: rohitdarekar816/fossology:web
     restart: unless-stopped
     environment:
       - FOSSOLOGY_DB_HOST=db
@@ -50,17 +37,17 @@ services:
       - FOSSOLOGY_DB_USER=fossy
       - FOSSOLOGY_DB_PASSWORD=fossy
       - FOSSOLOGY_SCHEDULER_HOST=scheduler
-    command:
+    command: 
       - sh
       - -c
       - |
         # Setup Apache configuration
-        chmod +x /tmp/setup-apache.sh && /tmp/setup-apache.sh
+        /tmp/setup-apache.sh
         # Start cron and Apache
         /etc/init.d/cron start
         exec /usr/sbin/apache2ctl -e info -D FOREGROUND
     ports:
-      - "80:80"
+      - "81:80"
     depends_on:
       - db
       - scheduler

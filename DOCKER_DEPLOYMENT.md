@@ -2,7 +2,7 @@
 
 This repository contains a complete FOSSology deployment setup using Docker Compose. The configuration has been optimized for easy deployment on any server.
 
-## Quick Start
+## Quick Start (Development)
 
 1. Clone this repository:
 ```bash
@@ -18,6 +18,34 @@ docker compose up -d
 3. Access FOSSology:
    - Web Interface: http://localhost:81
    - Default login: Check the FOSSology documentation for default credentials
+
+## Production Deployment (Recommended)
+
+For production deployments, use pre-built Docker Hub images:
+
+1. Clone this repository:
+```bash
+git clone <repository-url>
+cd fossology
+```
+
+2. Deploy using the production script:
+```bash
+./deploy-production.sh
+```
+
+OR manually:
+```bash
+docker compose -f docker-compose.prod.yml up -d
+```
+
+3. Access FOSSology:
+   - Web Interface: http://localhost:81
+
+### Images Used
+- **Web Service**: `rohitdarekar816/fossology:web`
+- **Scheduler Service**: `rohitdarekar816/fossology:scheduler`
+- **Database**: `postgres:16` (official)
 
 ## Services
 
