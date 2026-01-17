@@ -67,7 +67,7 @@ services:
     volumes:
       - repository:/srv/fossology/repository/
       - ./docker/apache/fossology.conf:/tmp/fossology.conf:ro
-      - ./docker/apache/setup-apache.sh:/tmp/setup-apache.sh:ro
+      - ./docker/apache/setup-apache.sh:/tmp/setup-apache.sh
     healthcheck:
       test:
         [
