@@ -55,7 +55,7 @@ services:
       - -c
       - |
         # Setup Apache configuration
-        chmod +x /tmp/setup-apache.sh && /tmp/setup-apache.sh
+        cp /tmp/setup-apache.sh /tmp/setup.sh && chmod +x /tmp/setup.sh && /tmp/setup.sh
         # Start cron and Apache
         /etc/init.d/cron start
         exec /usr/sbin/apache2ctl -e info -D FOREGROUND
