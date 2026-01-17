@@ -59,8 +59,8 @@ services:
         # Start cron and Apache
         /etc/init.d/cron start
         exec /usr/sbin/apache2ctl -e info -D FOREGROUND
-    ports:
-      - "80:80"
+    expose:
+      - "80"
     depends_on:
       - db
       - scheduler
