@@ -29,7 +29,7 @@ class AboutPage extends DefaultPlugin
   public function __construct()
   {
     parent::__construct(self::NAME, array(
-        self::TITLE => "About Fossology",
+        self::TITLE => "About Afintrix",
         self::MENU_LIST => "Help::About",
         self::REQUIRES_LOGIN => false,
     ));
@@ -45,7 +45,7 @@ class AboutPage extends DefaultPlugin
   {
     $vars = array(
         'licenseCount' => $this->licenseDao->getLicenseCount(),
-        'project' => _("FOSSology"),
+        'project' => _("Afintrix"),
     );
 
     if (Auth::isAdmin()) {

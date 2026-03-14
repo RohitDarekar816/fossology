@@ -229,15 +229,15 @@ class Menu
                     && $_COOKIE[self::BANNER_COOKIE] == 1);
 
     $vars = array();
-    $vars['title'] = empty($title) ? _("Welcome to FOSSology") : $title;
+    $vars['title'] = empty($title) ? _("Welcome to Afintrix") : $title;
     if ($hide_banner) {
       $vars['bannerMsg'] = "";
     } else {
       $vars['bannerMsg'] = @$sysConfig['BannerMsg'];
     }
     $vars['systemLoad'] = get_system_load_average().'<br/>';
-    $vars['logoLink'] =  $sysConfig['LogoLink']?: 'http://fossology.org';
-    $vars['logoImg'] =  $sysConfig['LogoImage']?: 'images/fossology-logo.gif';
+    $vars['logoLink'] =  $sysConfig['LogoLink']?: 'https://afintrix.com';
+    $vars['logoImg'] =  $sysConfig['LogoImage']?: 'images/afintrix-logo.svg';
 
     if ( array_key_exists('SupportEmailLabel',$sysConfig) && !empty($sysConfig['SupportEmailLabel'])
             && array_key_exists('SupportEmailAddr',$sysConfig) && !empty($sysConfig['SupportEmailAddr'])) {

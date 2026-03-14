@@ -21,7 +21,7 @@ class GettingStartedPage extends DefaultPlugin
   function __construct()
   {
     parent::__construct(self::NAME, array(
-        self::TITLE =>  _("Getting Started with FOSSology"),
+        self::TITLE =>  _("Getting Started with Afintrix"),
         self::REQUIRES_LOGIN => false,
         self::MENU_LIST => "Help::Getting Started",
     ));
