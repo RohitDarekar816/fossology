@@ -105,3 +105,6 @@ services:
 volumes:
   database:
   repository:
+networks:
+  proxy:
+    external: true
