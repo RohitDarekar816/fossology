@@ -253,7 +253,7 @@ if($isUpdating && empty($sysconfig['Release'])) {
     require_once("$LIBEXECDIR/dbmigrate_2.5-2.6.php");
     migrate_25_26($Verbose);
   }
-  if(!array_key_exists('clearing_pk', $currSchema['TABLE']['clearing_decision']) && $isUpdating)
+  if(!array_key_exists('clearing_pk', $currSchema['TABLE']['clearing_decision']) && $isUpdating && !array_key_exists('clearing_decision_pk', $currSchema['TABLE']['clearing_decision']))
   {
     $timeoutSec = 20;
     echo "Missing column clearing_decision.clearing_pk, you should update to version 2.6.2 before migration\n";
